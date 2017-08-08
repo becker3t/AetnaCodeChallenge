@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AetnaCodingExercise</string>
+    <string name="search">Search</string>
+    <string name="base_url">http://api.flickr.com/services/feeds/</string>
+    <string name="search_landscape">Search… IN LANDSCAPE!!</string>
+    <string name="search_loc_landscape">Search Location… IN LANDSCAPE!!</string>
+    <string name="search_loc">Search Location</string>
+</resources>
