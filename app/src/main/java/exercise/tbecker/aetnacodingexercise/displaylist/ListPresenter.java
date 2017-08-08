@@ -39,6 +39,10 @@ public class ListPresenter implements ListContract.Presenter {
 
     @Override
     public void populateUserList(String input) {
+        if(listMyData.size() > 0) {
+            listMyData.clear();
+        }
+
         Call<ResponseItem> call = service.getData(1, "any", "json", input);
         call.enqueue(new Callback<ResponseItem>() {
             @Override

@@ -12,7 +12,7 @@ import retrofit2.http.Query;
 public interface MyRetrofitService {
 
     @GET("photos_public.gne")
-    Call<ResponseItem> getData(@Query("noJsonCallback") int noJsonCallback,
+    Call<ResponseItem> getData(@Query("nojsoncallback") int noJsonCallback,
                                @Query("tagmode") String tagMode,
                                @Query("format") String format,
                                @Query("tags") String input);

@@ -2,10 +2,12 @@ package exercise.tbecker.aetnacodingexercise.displaylist;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.List;
@@ -33,6 +35,9 @@ public class ListActivity extends AppCompatActivity implements ListContract.View
     @BindView(R.id.results_recycler)
     RecyclerView recyclerView;
 
+    @BindView(R.id.loading_progress)
+    ProgressBar loadingProgressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +52,8 @@ public class ListActivity extends AppCompatActivity implements ListContract.View
         presenter = new ListPresenter(this, service);
 
         ButterKnife.bind(this);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
@@ -64,10 +71,12 @@ public class ListActivity extends AppCompatActivity implements ListContract.View
     @Override
     public void showUserList(List<MyData> listInfo) {
         updateRecyclerAdapter(listInfo);
+        loadingProgressBar.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.search_btn)
     public void makeNetworkCall() {
+        loadingProgressBar.setVisibility(View.VISIBLE);
         presenter.populateUserList(searchEditText.getText().toString());
     }
 
